@@ -6,7 +6,7 @@
 
 - route prefix
 - web socket via Socket.io
-- logging
+- logging middleware
 
 ### Client
 

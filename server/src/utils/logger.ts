@@ -1,21 +1,35 @@
-import { createLogger, transports, format } from "winston";
+import { Request, Response } from "express";
+import winston from "winston";
 import expressWinston from "express-winston";
+import "winston-daily-rotate-file";
+import { DailyRotateFileTransportOptions } from "winston-daily-rotate-file";
 
 import { isDev } from "@utils/initial";
 
-const { combine, timestamp, json } = format;
+const { combine, timestamp, json } = winston.format;
 
+const timestampFormat = { format: "YYYY-MM-DDTHH:mm:ss.SSSZ" };
 const logDir = isDev ? "logs" : "/var/log";
-const errLog = `${logDir}/error.log`;
-const combinedLog = `${logDir}/server.log`;
+const transportOptions: DailyRotateFileTransportOptions = {
+  zippedArchive: true,
+  maxSize: "5m",
+  maxFiles: "30d",
+  filename: `${logDir}/server.%DATE%.log`,
+};
+const dynamicMeta = (req: Request, res: Response) => {
+  if (!req) return {};
+  const { reqId } = req;
+  return { reqId };
+};
 const options = {
-  level: "info",
-  format: combine(timestamp(), json()),
-  transports: [
-    new transports.File({ filename: errLog, level: "error" }),
-    new transports.File({ filename: combinedLog }),
-  ],
+  format: combine(timestamp(timestampFormat), json()),
+  transports: [new winston.transports.DailyRotateFile(transportOptions)],
+  dynamicMeta,
 };
 
-export const loggingMiddleware = expressWinston.logger(options);
-export const logger = createLogger(options);
+// TODO: level should be a config
+winston.configure({ ...options, level: "verbose" });
+
+expressWinston.requestWhitelist.push("body");
+expressWinston.responseWhitelist.push("body");
+export const infoLogger = expressWinston.logger(options);
