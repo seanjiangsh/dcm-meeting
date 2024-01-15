@@ -1,3 +1,4 @@
+import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
@@ -5,4 +6,16 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   build: { outDir: "../server/public" },
+  resolve: {
+    alias: {
+      "@appTypes": path.resolve("src/types"),
+      "@assets": path.resolve("src/assets"),
+      "@components": path.resolve("src/components"),
+      "@pages": path.resolve("src/pages"),
+      "@redux": path.resolve("src/redux"),
+      "@routes": path.resolve("src/routes"),
+      "@utils": path.resolve("src/utils"),
+      "@hooks": path.resolve("src/hooks"),
+    },
+  },
 });
