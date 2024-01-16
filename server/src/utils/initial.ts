@@ -9,3 +9,4 @@ type ServerConfig = {
   routePrefix?: string;
 };
 export const config: ServerConfig = fse.readJSONSync(`${appDir}/config.json`);
+console.log(config);

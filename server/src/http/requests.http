@@ -1,4 +1,7 @@
 ###
+GET http://localhost:5000 HTTP/1.1
+
+###
 GET http://localhost:5000/meeting HTTP/1.1
 
 ###

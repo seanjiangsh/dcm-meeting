@@ -16,7 +16,6 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
 
     // paths
     "baseUrl": "src",

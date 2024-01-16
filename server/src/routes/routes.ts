@@ -6,8 +6,8 @@ const route = express.Router();
 
 // * serve static web page
 const publicDir = path.resolve("public");
-route.use(express.static(publicDir));
-route.get("/meeting", (req, res) => {
+route.use("/meeting", express.static(publicDir));
+route.get("/meeting/*", (req, res) => {
   const index = `${publicDir}/index.html`;
   res.sendFile(index);
 });
