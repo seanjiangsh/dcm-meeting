@@ -1,11 +1,10 @@
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
-import { appPaths } from "@utils/global.vars";
-
-import Routing from "@routes/Routing";
 import { store, persister } from "@redux/root-store";
-import { Provider } from "react-redux";
+import { appPaths } from "@utils/global.vars";
+import Routing from "@routes/Routing";
 
 export default function App() {
   return (

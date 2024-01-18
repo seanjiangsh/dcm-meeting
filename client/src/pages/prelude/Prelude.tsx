@@ -6,8 +6,6 @@ import { Login } from "@mui/icons-material";
 import { useAppDispatch, useAppSelector } from "@redux/root-hook";
 import { userActions } from "@redux/user/reducer";
 
-import { appPaths } from "@utils/global.vars";
-
 const PaperStyle = {
   margin: "auto",
   display: "flex",
@@ -22,11 +20,8 @@ export default function Prelude() {
 
   const user = useAppSelector((s) => s.user);
   const { name } = user;
-
+  console.log(user);
   const [loading, setLoading] = useState(false);
-
-  const { basePath } = appPaths;
-  const disabled = !!!name;
 
   const nameChanged = (
     ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -53,6 +48,7 @@ export default function Prelude() {
       <TextField
         sx={ItemStyle}
         label="Your name to show in meeting"
+        data-testid="user-name-textfield"
         value={name}
         onChange={nameChanged}
       />
@@ -64,7 +60,7 @@ export default function Prelude() {
         sx={{ ...ItemStyle, height: "50px", fontWeight: "bold" }}
         onClick={onEnter}
         loading={loading}
-        disabled={disabled}
+        disabled={!name}
       >
         Start Meeting
       </LoadingButton>

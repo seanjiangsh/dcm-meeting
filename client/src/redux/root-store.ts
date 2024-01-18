@@ -31,14 +31,20 @@ const defaultMiddlewareConfig = {
     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
   },
 };
-export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (gDM) => gDM(defaultMiddlewareConfig).concat(middlewares),
-});
+
+export const setupStore = (preloadedState?: RootState) => {
+  return configureStore({
+    reducer: persistedReducer,
+    middleware: (gDM) => gDM(defaultMiddlewareConfig).concat(middlewares),
+    preloadedState,
+  });
+};
+export const store = setupStore();
 export const persister = persistStore(store);
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];
+export type RootState = ReturnType<typeof persistedReducer>;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,

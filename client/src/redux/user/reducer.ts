@@ -1,14 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { UserState } from "./types";
-
-const initialState: UserState = {
-  name: "",
-  streamingConfig: {
-    videoEnabled: false,
-    microphoneEnabled: false,
-  },
-};
+import { initialState } from "./initialState";
 
 const userSlice = createSlice({
   name: "user",
