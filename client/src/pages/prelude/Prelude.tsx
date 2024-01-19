@@ -56,6 +56,7 @@ export default function Prelude() {
       <LoadingButton
         variant="contained"
         loadingPosition="start"
+        data-testid="start-meeting-button"
         startIcon={<Login fontSize="large" />}
         sx={{ ...ItemStyle, height: "50px", fontWeight: "bold" }}
         onClick={onEnter}
