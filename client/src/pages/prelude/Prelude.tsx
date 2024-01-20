@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Paper, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Paper, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Login } from "@mui/icons-material";
 
 import { useAppDispatch, useAppSelector } from "@redux/root-hook";
 import { userActions } from "@redux/user/reducer";
+import { useNavigate } from "react-router-dom";
 
 const PaperStyle = {
   margin: "auto",
@@ -13,14 +14,15 @@ const PaperStyle = {
   borderRadius: "8px",
 };
 
-const ItemStyle = { m: 2, width: "20rem" };
+const ItemStyle = { m: 2, width: "20rem", textAlign: "center" };
 
 export default function Prelude() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const user = useAppSelector((s) => s.user);
   const { name } = user;
-  console.log(user);
+
   const [loading, setLoading] = useState(false);
 
   const nameChanged = (
@@ -39,12 +41,16 @@ export default function Prelude() {
         return;
     }
   };
-  const onEnter = () => {
-    // TODO
+  const onEnter = async () => {
+    // TODO: API calls to start the meeting room
+    navigate("/viewer");
   };
 
   return (
     <Paper elevation={10} sx={PaperStyle} onKeyUp={onKeyUp}>
+      <Typography sx={ItemStyle} variant="h5">
+        Welcome to DICOM Meeting
+      </Typography>
       <TextField
         sx={ItemStyle}
         label="Your name to show in meeting"

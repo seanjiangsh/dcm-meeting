@@ -1,6 +1,7 @@
-import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 import { store, persister } from "@redux/root-store";
 import { appPaths } from "@utils/global.vars";
@@ -11,7 +12,9 @@ export default function App() {
     <Provider store={store}>
       <PersistGate persistor={persister}>
         <BrowserRouter basename={appPaths.basePath}>
-          <Routing />
+          <ThemeProvider theme={createTheme()}>
+            <Routing />
+          </ThemeProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>
