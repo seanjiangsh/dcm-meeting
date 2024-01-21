@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   AppBar,
@@ -17,9 +17,11 @@ import {
 import { Apps, Logout, Person } from "@mui/icons-material";
 
 import { useAppDispatch, useAppSelector } from "@redux/root-hook";
+import { appBarHeight } from "@utils/global.vars";
 
 const AppBarStyle = {
   zIndex: (theme: Theme) => theme.zIndex.drawer + 1,
+  height: `${appBarHeight}px`,
 };
 
 export default function Appbar() {
@@ -29,17 +31,15 @@ export default function Appbar() {
   const user = useAppSelector((s) => s.user);
   const { name } = user;
 
-  const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
-  const open = Boolean(menuAnchor);
+  const [menuOpened, setMenuOpened] = useState(false);
+  const menuAnchorRef = useRef(null);
 
-  const menuClick = (ev: MouseEvent<HTMLButtonElement>) =>
-    setMenuAnchor(ev.currentTarget);
-  const menuClose = () => setMenuAnchor(null);
+  const openMenu = () => setMenuOpened(!menuOpened);
   const backClick = () => navigate("/prelude");
 
   return (
-    <AppBar position="fixed" sx={AppBarStyle}>
-      <Toolbar>
+    <AppBar position="fixed">
+      <Toolbar sx={AppBarStyle}>
         {/* <IconButton color="inherit" onClick={drawerBtnClick} edge="start">
           <MenuIcon />
         </IconButton> */}
@@ -47,15 +47,15 @@ export default function Appbar() {
           DICOM Meeting
         </Typography>
         <Box sx={{ ml: "auto", display: "flex" }}>
-          <IconButton color="inherit" onClick={menuClick}>
+          <IconButton color="inherit" ref={menuAnchorRef} onClick={openMenu}>
             <Apps />
           </IconButton>
         </Box>
 
         <Popover
-          anchorEl={menuAnchor}
-          open={open}
-          onClose={menuClose}
+          anchorEl={menuAnchorRef.current}
+          open={menuOpened}
+          onClose={openMenu}
           anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         >
           <List>

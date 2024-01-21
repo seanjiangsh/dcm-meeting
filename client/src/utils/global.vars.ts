@@ -16,3 +16,5 @@ if (import.meta.env.PROD) {
   console.error = () => {};
   document.addEventListener("contextmenu", (event) => event.preventDefault());
 }
+
+export const appBarHeight = 64;
