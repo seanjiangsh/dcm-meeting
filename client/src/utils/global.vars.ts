@@ -8,12 +8,12 @@ if (import.meta.env.PROD) {
   appPaths.basePath = `${basePath}/meeting`;
   appPaths.apiPath = `${basePath}/api/v1.0`;
 
-  console.trace = () => {};
-  console.debug = () => {};
-  console.log = () => {};
-  console.info = () => {};
-  console.warn = () => {};
-  console.error = () => {};
+  // console.trace = () => {};
+  // console.debug = () => {};
+  // console.log = () => {};
+  // console.info = () => {};
+  // console.warn = () => {};
+  // console.error = () => {};
   document.addEventListener("contextmenu", (event) => event.preventDefault());
 }
 

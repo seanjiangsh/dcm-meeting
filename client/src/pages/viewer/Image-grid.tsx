@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Paper } from "@mui/material";
 
 import { appBarHeight } from "@utils/global.vars";
-import * as csUtils from "@utils/cornerstone";
+import * as csInit from "@utils/cornerstone/init";
 
 const margin = 4;
 const ImageGridStyle = {
@@ -20,17 +20,17 @@ export default function ImageGrid() {
   const csDivRef = useRef(null);
 
   useEffect(() => {
-    if (initialized) return;
-    csUtils
+    csInit
       .initCornerstone()
       .then(() => setInitialized(true))
       .catch((err) => console.warn(err));
-  }, [initialized]);
+  }, []);
 
   useEffect(() => {
     const csDiv = csDivRef.current;
     if (!initialized || loaded || !csDiv) return;
-    csUtils.initCSDiv(csDiv);
+    csInit.initCSDiv(csDiv);
+    setLoaded(true);
   }, [initialized, loaded]);
 
   return (
