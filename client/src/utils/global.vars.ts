@@ -3,6 +3,8 @@ export const appPaths = {
   apiPath: "/api/v1.0",
 };
 
+console.log({ mode: import.meta.env.MODE, prod: import.meta.env.PROD });
+
 if (import.meta.env.PROD) {
   const [basePath] = window.location.pathname.split("/meeting");
   appPaths.basePath = `${basePath}/meeting`;

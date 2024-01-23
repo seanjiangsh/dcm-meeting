@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Box } from "@mui/material";
 
 import NotFound from "@pages/not-found/NotFound";
@@ -11,22 +11,16 @@ const ContainerStyle = {
   display: "flex",
   flexDirection: "column",
 };
-const MainLayout = () => (
-  <Box sx={ContainerStyle}>
-    <Outlet />
-  </Box>
-);
 
 export default function Routing() {
   return (
-    <Routes>
-      <Route index element={<Navigate to="/prelude" />} />
-      <Route path="/" element={<MainLayout />}>
+    <Box sx={ContainerStyle}>
+      <Routes>
+        <Route path="/" element={<Navigate to="/prelude" />} />
         <Route path="/prelude" element={<Prelude />} />
         <Route path="/viewer" element={<Viewer />} />
         <Route path="*" element={<NotFound />} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+      </Routes>
+    </Box>
   );
 }

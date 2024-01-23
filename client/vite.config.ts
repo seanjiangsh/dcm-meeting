@@ -1,5 +1,5 @@
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
 const alias = {
@@ -16,17 +16,23 @@ const aliasMap = Object.entries(alias).map(([k, v]) => ({
   find: k,
   replacement: v,
 }));
+console.log({ NODE_ENV: process.env.NODE_ENV });
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  test: { include: ["**/*.test.tsx"], globals: true, environment: "jsdom" },
+  test: {
+    include: ["**/*.test.tsx"],
+    globals: true,
+    environment: "jsdom",
+    watch: false,
+    setupFiles: "test/test-setup.ts",
+  },
   build: { outDir: "../server/public", minify: false },
   resolve: {
     alias:
-      process.env.NODE_ENV === "dev"
-        ? alias
-        : [
+      process.env.NODE_ENV === "production"
+        ? [
             ...aliasMap,
             {
               // TODO: this is a temp hack, wait csTools to be fixed
@@ -34,6 +40,7 @@ export default defineConfig({
               replacement:
                 "./node_modules/@cornerstonejs/tools/dist/umd/index.js",
             },
-          ],
+          ]
+        : alias,
   },
 });

@@ -12,7 +12,7 @@ const ContainerStyle = {
 
 export default function Viewer() {
   return (
-    <Box sx={ContainerStyle}>
+    <Box data-testid="page-Viewer" sx={ContainerStyle}>
       <AppBar />
       <ImageGrid />
     </Box>

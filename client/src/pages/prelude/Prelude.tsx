@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Paper, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Login } from "@mui/icons-material";
 
 import { useAppDispatch, useAppSelector } from "@redux/root-hook";
 import { userActions } from "@redux/user/reducer";
-import { useNavigate } from "react-router-dom";
 
 const PaperStyle = {
   margin: "auto",
@@ -54,7 +54,7 @@ export default function Prelude() {
       <TextField
         sx={ItemStyle}
         label="Your name to show in meeting"
-        data-testid="user-name-textfield"
+        data-testid="Prelude-user-name-textfield"
         value={name}
         onChange={nameChanged}
       />
@@ -62,7 +62,7 @@ export default function Prelude() {
       <LoadingButton
         variant="contained"
         loadingPosition="start"
-        data-testid="start-meeting-button"
+        data-testid="Prelude-start-meeting-button"
         startIcon={<Login fontSize="large" />}
         sx={{ ...ItemStyle, height: "50px", fontWeight: "bold" }}
         onClick={onEnter}

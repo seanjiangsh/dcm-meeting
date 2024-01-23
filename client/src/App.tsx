@@ -11,11 +11,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persister}>
-        <BrowserRouter basename={appPaths.basePath}>
-          <ThemeProvider theme={createTheme()}>
+        <ThemeProvider theme={createTheme()}>
+          <BrowserRouter basename={appPaths.basePath}>
             <Routing />
-          </ThemeProvider>
-        </BrowserRouter>
+          </BrowserRouter>
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   );
