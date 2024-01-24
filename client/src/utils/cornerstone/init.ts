@@ -4,21 +4,12 @@ import { Types as csTypes, Enums as csEnums } from "@cornerstonejs/core";
 import csDcmImageLoader from "@cornerstonejs/dicom-image-loader";
 import * as csTools from "@cornerstonejs/tools";
 
-import { appPaths } from "@utils/global.vars";
-
-const { origin } = window.location;
-const { basePath } = appPaths;
-const wadoBase = `wadouri:${basePath}/dcm/DX-cat`;
-const catWadoIds = [
-  `${wadoBase}/1.dcm`,
-  `${wadoBase}/2.dcm`,
-  `${wadoBase}/3.dcm`,
-  `${wadoBase}/4.dcm`,
-  `${wadoBase}/5.dcm`,
-];
-
-const rendererId = "meeting-renderer";
-const viewportId = "meeting-stack-viewport";
+import {
+  appPaths,
+  catWadoIds,
+  RENDERER_ID,
+  VIEWPORT_ID,
+} from "@utils/global.vars";
 
 const initCSLoader = () => {
   const { preferSizeOverAccuracy, useNorm16Texture } =
@@ -36,6 +27,8 @@ const initCSLoader = () => {
   const maxWebWorkers = navigator.hardwareConcurrency
     ? Math.min(navigator.hardwareConcurrency, 7)
     : 1;
+  const { origin } = window.location;
+  const { basePath } = appPaths;
   const config = {
     maxWebWorkers,
     startWebWorkersOnDemand: true,
@@ -53,60 +46,22 @@ const initCSLoader = () => {
 export const initCornerstone = async () => {
   initCSLoader();
   csTools.init();
-  await csCore.init();
+  const result = await csCore.init();
+  if (!result) throw new Error("Initialize cornerstone core failed");
 };
 
-const getToolGroup = () => {
-  const {
-    PanTool,
-    WindowLevelTool,
-    StackScrollMouseWheelTool,
-    ZoomTool,
-    ToolGroupManager,
-  } = csTools;
+export const initCSDiv = async (csDiv: HTMLDivElement) => {
+  const enabled = csCore.getEnabledElement(csDiv);
+  if (enabled) return;
 
-  csTools.addTool(PanTool);
-  csTools.addTool(WindowLevelTool);
-  csTools.addTool(StackScrollMouseWheelTool);
-  csTools.addTool(ZoomTool);
-
-  const toolGroup = ToolGroupManager.createToolGroup("meeting-tool-group");
-  if (!toolGroup) return;
-
-  toolGroup.addTool(WindowLevelTool.toolName);
-  toolGroup.addTool(PanTool.toolName);
-  toolGroup.addTool(ZoomTool.toolName);
-  toolGroup.addTool(StackScrollMouseWheelTool.toolName);
-
-  const { Primary, Auxiliary, Secondary } = csTools.Enums.MouseBindings;
-  toolGroup.setToolActive(WindowLevelTool.toolName, {
-    bindings: [{ mouseButton: Primary }], // Left Click
-  });
-  toolGroup.setToolActive(PanTool.toolName, {
-    bindings: [{ mouseButton: Auxiliary }], // Middle Click
-  });
-  toolGroup.setToolActive(ZoomTool.toolName, {
-    bindings: [{ mouseButton: Secondary }], // Right Click
-  });
-  toolGroup.setToolActive(StackScrollMouseWheelTool.toolName);
-
-  toolGroup.addViewport(viewportId, rendererId);
-
-  return toolGroup;
-};
-
-export const initCSDiv = async (element: HTMLDivElement) => {
   const type = csEnums.ViewportType.STACK;
-  const viewportParams = { element, viewportId, type };
-  const renderer = new csCore.RenderingEngine(rendererId);
+  const viewportParams = { element: csDiv, viewportId: VIEWPORT_ID, type };
+  const renderer = new csCore.RenderingEngine(RENDERER_ID);
   renderer.enableElement(viewportParams);
 
-  const viewport = renderer.getViewport(viewportId) as csTypes.IStackViewport;
+  const viewport = renderer.getViewport(VIEWPORT_ID) as csTypes.IStackViewport;
   await viewport.setStack(catWadoIds);
   viewport.render();
-
-  const toolGroup = getToolGroup();
-  if (!toolGroup) return;
 
   // const imageData = viewport.getImageData();
   // console.log(imageData);

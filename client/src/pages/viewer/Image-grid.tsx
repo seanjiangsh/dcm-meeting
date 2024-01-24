@@ -3,6 +3,7 @@ import { Paper } from "@mui/material";
 
 import { appBarHeight } from "@utils/global.vars";
 import * as csInit from "@utils/cornerstone/init";
+import * as csToolUtils from "@utils/cornerstone/tools";
 
 const margin = 4;
 const ImageGridStyle = {
@@ -23,14 +24,18 @@ export default function ImageGrid() {
     csInit
       .initCornerstone()
       .then(() => setInitialized(true))
-      .catch((err) => console.warn(err));
+      .catch((err) => console.warn(err)); // TODO: show error
   }, []);
 
   useEffect(() => {
     const csDiv = csDivRef.current;
     if (!initialized || loaded || !csDiv) return;
-    csInit.initCSDiv(csDiv);
-    setLoaded(true);
+    csInit.initCSDiv(csDiv).then(() => {
+      csToolUtils.activeTool("Pan");
+      csToolUtils.activeTool("Zoom");
+      csToolUtils.activeTool("WindowLevel");
+      setLoaded(true);
+    });
   }, [initialized, loaded]);
 
   return (

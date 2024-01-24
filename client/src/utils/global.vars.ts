@@ -20,3 +20,15 @@ if (import.meta.env.PROD) {
 }
 
 export const appBarHeight = 64;
+
+const wadoBase = `wadouri:${appPaths.basePath}/dcm/DX-cat`;
+export const catWadoIds = [
+  `${wadoBase}/1.dcm`,
+  `${wadoBase}/2.dcm`,
+  `${wadoBase}/3.dcm`,
+  `${wadoBase}/4.dcm`,
+  `${wadoBase}/5.dcm`,
+];
+export const RENDERER_ID = "meeting-renderer";
+export const VIEWPORT_ID = "meeting-stack-viewport";
+export const TOOL_GROUP_ID = "meeting-tool-group";

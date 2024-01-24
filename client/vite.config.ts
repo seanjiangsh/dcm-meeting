@@ -16,7 +16,6 @@ const aliasMap = Object.entries(alias).map(([k, v]) => ({
   find: k,
   replacement: v,
 }));
-console.log({ NODE_ENV: process.env.NODE_ENV });
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,7 +27,7 @@ export default defineConfig({
     watch: false,
     setupFiles: "test/test-setup.ts",
   },
-  build: { outDir: "../server/public", minify: false },
+  build: { outDir: "../server/public" },
   resolve: {
     alias:
       process.env.NODE_ENV === "production"
