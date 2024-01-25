@@ -1,11 +1,12 @@
 import { screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-
-import Prelude from "../Prelude";
-import * as testUtils from "@utils/utils-for-tests";
-import Routing from "@routes/Routing";
 import { MemoryRouter } from "react-router-dom";
 
+import * as testUtils from "@utils/utils-for-tests";
+import Routing from "@routes/Routing";
+import Prelude from "../Prelude";
+
+// * fixing csWadoImageLoader and canvas issue, see https://github.com/cornerstonejs/cornerstoneWADOImageLoader/issues/441#issuecomment-1156214186
 const script = global.document.createElement("script");
 script.setAttribute("src", "/");
 Object.defineProperty(global.document, "currentScript", { value: script });

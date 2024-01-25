@@ -16,7 +16,7 @@ export default function Routing() {
   return (
     <Box sx={ContainerStyle}>
       <Routes>
-        <Route path="/" element={<Navigate to="/prelude" />} />
+        <Route index element={<Navigate to="/prelude" />} />
         <Route path="/prelude" element={<Prelude />} />
         <Route path="/viewer" element={<Viewer />} />
         <Route path="*" element={<NotFound />} />
