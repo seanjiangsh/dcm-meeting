@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "test": "vitest",
+    "e2e": "start-test dev 5173 'cypress open'",
+    "cy:unit": "cypress run --component",
+    "cy:e2e": "start-test dev 5173 'cypress run --e2e'",
+    "test": "npm run cy:unit && npm run cy:e2e",
     "build": "vite build --base=./",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -31,9 +34,7 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.2.0",
-    "@testing-library/react": "^14.1.2",
-    "@testing-library/user-event": "^14.5.2",
+    "@cypress/code-coverage": "^3.12.19",
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "^18.2.17",
@@ -41,15 +42,14 @@
     "@typescript-eslint/eslint-plugin": "6.19.0",
     "@typescript-eslint/parser": "6.19.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/coverage-v8": "^1.2.1",
-    "canvas": "^2.11.2",
-    "cross-env": "^7.0.3",
+    "cypress": "^13.6.3",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "jsdom": "^24.0.0",
+    "prettier": "3.2.4",
+    "start-server-and-test": "^2.0.3",
     "typescript": "^5.2.2",
     "vite": "5.0.12",
-    "vitest": "^1.2.1"
+    "vite-plugin-istanbul": "^5.0.0"
   }
 }

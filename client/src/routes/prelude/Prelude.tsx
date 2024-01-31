@@ -26,7 +26,7 @@ export default function Prelude() {
   const [loading, setLoading] = useState(false);
 
   const nameChanged = (
-    ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const name = ev.target.value;
     dispatch(userActions.setUserName(name));
@@ -47,22 +47,22 @@ export default function Prelude() {
   };
 
   return (
-    <Paper elevation={10} sx={PaperStyle} onKeyUp={onKeyUp}>
+    <Paper id="page-Prelude" elevation={10} sx={PaperStyle} onKeyUp={onKeyUp}>
       <Typography sx={ItemStyle} variant="h5">
         Welcome to DICOM Meeting
       </Typography>
       <TextField
         sx={ItemStyle}
         label="Your name to show in meeting"
-        data-testid="Prelude-user-name-textfield"
         value={name}
         onChange={nameChanged}
+        InputProps={{ id: "Prelude-user-name-textfield" }}
       />
 
       <LoadingButton
         variant="contained"
         loadingPosition="start"
-        data-testid="Prelude-start-meeting-button"
+        id="Prelude-start-meeting-button"
         startIcon={<Login fontSize="large" />}
         sx={{ ...ItemStyle, height: "50px", fontWeight: "bold" }}
         onClick={onEnter}

@@ -21,6 +21,7 @@
     // paths
     "baseUrl": "src",
     "paths": {
+      "@/*": ["*"],
       "@appTypes/*": ["types/*"],
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
@@ -31,6 +32,6 @@
       "@hooks/*": ["hooks/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "cypress.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -11,8 +11,9 @@ const ContainerStyle = {
 };
 
 export default function Viewer() {
+  // TODO: redirect to prelude if user name unset
   return (
-    <Box data-testid="page-Viewer" sx={ContainerStyle}>
+    <Box id="page-Viewer" sx={ContainerStyle}>
       <AppBar />
       <ImageGrid />
     </Box>

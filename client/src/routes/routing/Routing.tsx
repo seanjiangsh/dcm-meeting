@@ -1,9 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import NotFound from "@pages/not-found/NotFound";
-import Prelude from "@pages/prelude/Prelude";
-import Viewer from "@pages/viewer/Viewer";
+import NotFound from "@routes/not-found/NotFound";
+import Prelude from "@routes/prelude/Prelude";
+import Viewer from "@routes/viewer/Viewer";
 
 const ContainerStyle = {
   width: "100%",

@@ -63,6 +63,6 @@ export const initCSDiv = async (csDiv: HTMLDivElement) => {
   await viewport.setStack(catWadoIds);
   viewport.render();
 
-  // const imageData = viewport.getImageData();
-  // console.log(imageData);
+  const imageData = viewport.getImageData();
+  console.log(imageData);
 };

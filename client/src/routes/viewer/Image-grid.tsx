@@ -40,7 +40,7 @@ export default function ImageGrid() {
 
   return (
     <Paper elevation={10} sx={ImageGridStyle}>
-      <div ref={csDivRef} style={CsDivStyle} />
+      <div data-testid="Image-grid-csDiv" ref={csDivRef} style={CsDivStyle} />
     </Paper>
   );
 }

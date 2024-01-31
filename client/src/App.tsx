@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 
 import { store, persister } from "@redux/root-store";
 import { appPaths } from "@utils/global.vars";
-import Routing from "@routes/Routing";
+import Routing from "@routes/routing/Routing";
 
 export default function App() {
   return (
