@@ -1,7 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import AppBar from "./AppBar";
+import { useAppSelector } from "@redux/root-hook";
+
+import Appbar from "./Appbar";
 import ImageGrid from "./Image-grid";
+import { useEffect } from "react";
 
 const ContainerStyle = {
   width: "100%",
@@ -11,10 +15,18 @@ const ContainerStyle = {
 };
 
 export default function Viewer() {
-  // TODO: redirect to prelude if user name unset
+  const navigate = useNavigate();
+
+  const user = useAppSelector((s) => s.user);
+  const { name } = user;
+
+  useEffect(() => {
+    if (!name) navigate("/prelude");
+  }, [name, navigate]);
+
   return (
     <Box id="page-Viewer" sx={ContainerStyle}>
-      <AppBar />
+      <Appbar />
       <ImageGrid />
     </Box>
   );

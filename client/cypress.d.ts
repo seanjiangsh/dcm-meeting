@@ -8,6 +8,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
       mount: typeof mount;
+      setPersist: () => Chainable<Cypress.AUTWindow>;
     }
   }
 }

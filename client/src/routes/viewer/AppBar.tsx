@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   AppBar,
@@ -31,10 +31,11 @@ export default function Appbar() {
   const user = useAppSelector((s) => s.user);
   const { name } = user;
 
-  const [menuOpened, setMenuOpened] = useState(false);
-  const menuAnchorRef = useRef(null);
+  const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
 
-  const openMenu = () => setMenuOpened(!menuOpened);
+  const menuClick = (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+    setMenuAnchor(ev.currentTarget);
+  const menuClose = () => setMenuAnchor(null);
   const backClick = () => navigate("/prelude");
 
   return (
@@ -47,15 +48,20 @@ export default function Appbar() {
           DICOM Meeting
         </Typography>
         <Box sx={{ ml: "auto", display: "flex" }}>
-          <IconButton color="inherit" ref={menuAnchorRef} onClick={openMenu}>
+          <IconButton
+            id="Appbar-menu-button"
+            color="inherit"
+            onClick={menuClick}
+          >
             <Apps />
           </IconButton>
         </Box>
 
         <Popover
-          anchorEl={menuAnchorRef.current}
-          open={menuOpened}
-          onClose={openMenu}
+          id="Appbar-popover"
+          anchorEl={menuAnchor}
+          open={Boolean(menuAnchor)}
+          onClose={menuClose}
           anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         >
           <List>
@@ -66,7 +72,7 @@ export default function Appbar() {
               <ListItemText>{name}</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton onClick={backClick}>
+              <ListItemButton id="Appbar-back-button" onClick={backClick}>
                 <ListItemIcon>
                   <Logout />
                 </ListItemIcon>
