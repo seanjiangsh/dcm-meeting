@@ -35,3 +35,17 @@
 //     }
 //   }
 // }
+
+import { mount } from "cypress/react18";
+
+// * for component testing
+Cypress.Commands.add("mount", mount);
+
+// * adding user info persistent for "/viewer" routes
+Cypress.Commands.add<any>("setPersist", () => {
+  const userPersist = {
+    user: '{"name":"Sean","streamingConfig":{"videoEnabled":false,"microphoneEnabled":false}}',
+    _persist: '{"version":-1,"rehydrated":false}',
+  };
+  window.localStorage.setItem("persist:root", JSON.stringify(userPersist));
+});

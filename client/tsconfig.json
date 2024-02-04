@@ -29,9 +29,9 @@
       "@redux/*": ["redux/*"],
       "@routes/*": ["routes/*"],
       "@utils/*": ["utils/*"],
-      "@hooks/*": ["hooks/*"]
-    }
+      "@hooks/*": ["hooks/*"],
+    },
   },
-  "include": ["src", "cypress.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "cypress/cypress.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }],
 }
