@@ -19,7 +19,7 @@ import { Apps, Logout, Person } from "@mui/icons-material";
 import { useAppDispatch, useAppSelector } from "@redux/root-hook";
 import { appBarHeight } from "@utils/global.vars";
 
-const AppBarStyle = {
+const AppbarStyle = {
   zIndex: (theme: Theme) => theme.zIndex.drawer + 1,
   height: `${appBarHeight}px`,
 };
@@ -40,7 +40,7 @@ export default function Appbar() {
 
   return (
     <AppBar position="fixed">
-      <Toolbar sx={AppBarStyle}>
+      <Toolbar sx={AppbarStyle}>
         {/* <IconButton color="inherit" onClick={drawerBtnClick} edge="start">
           <MenuIcon />
         </IconButton> */}

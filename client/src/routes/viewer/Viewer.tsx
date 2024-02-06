@@ -3,8 +3,8 @@ import { Box } from "@mui/material";
 
 import { useAppSelector } from "@redux/root-hook";
 
-import Appbar from "./Appbar";
 import ImageGrid from "./Image-grid";
+import Appbar from "./Appbar";
 import { useEffect } from "react";
 
 const ContainerStyle = {
