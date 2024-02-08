@@ -31,6 +31,6 @@ const alias =
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), istanbul({ cypress: true, requireEnv: false })],
-  build: { outDir: "../server/public" },
+  build: { outDir: "../server/public", emptyOutDir: true },
   resolve: { alias },
 });

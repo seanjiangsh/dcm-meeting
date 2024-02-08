@@ -13,9 +13,14 @@
     "client": "npm run dev --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "deploy": "npm run build --prefix client && npm start --prefix server",
-    "test": "npm test --prefix server && npm test --prefix client"
+    "cy:prod": "start-test server http://localhost/meeting 'cross-env env=PROD cypress run --e2e --project client'",
+    "test": "npm test --prefix client && npm run cy:prod && npm test --prefix server"
   },
   "devDependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "cypress": "^13.6.4",
+    "start-server-and-test": "^2.0.3",
+    "typescript": "^5.3.3"
   }
 }
