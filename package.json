@@ -10,10 +10,11 @@
     "install-client": "cd client && npm install && cd ..",
     "install": "npm run install-server && npm run install-client",
     "server": "npm run dev --prefix server",
+    "server:start": "npm start --prefix server",
     "client": "npm run dev --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "deploy": "npm run build --prefix client && npm start --prefix server",
-    "cy:prod": "start-test server http://localhost/meeting 'cross-env env=PROD cypress run --e2e --project client'",
+    "cy:prod": "start-test server http://localhost:5000/meeting 'cross-env env=PROD cypress run --e2e --project client'",
     "test": "npm test --prefix client && npm run cy:prod && npm test --prefix server"
   },
   "devDependencies": {

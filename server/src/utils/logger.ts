@@ -10,7 +10,7 @@ const { combine, timestamp, json } = winston.format;
 const { logLevel } = config;
 
 const timestampFormat = { format: "YYYY-MM-DDTHH:mm:ss.SSSZ" };
-const logDir = isDev ? "logs" : `${appDir}/log`;
+const logDir = isDev ? "logs" : `${appDir}/logs`;
 const transportOptions: DailyRotateFileTransportOptions = {
   zippedArchive: true,
   maxSize: "5m",

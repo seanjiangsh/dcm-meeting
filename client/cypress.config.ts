@@ -2,7 +2,9 @@ import { defineConfig } from "cypress";
 import cypressCoverageTask from "@cypress/code-coverage/task";
 
 const isProd = process.env.ENV === "PROD";
-const baseUrl = isProd ? "http://localhost/meeting" : "http://localhost:5173";
+const baseUrl = isProd
+  ? "http://localhost:5000/meeting"
+  : "http://localhost:5173";
 const setupNodeEvents = isProd
   ? undefined
   : (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
