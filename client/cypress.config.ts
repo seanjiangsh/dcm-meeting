@@ -1,13 +1,14 @@
 import { defineConfig } from "cypress";
 import cypressCoverageTask from "@cypress/code-coverage/task";
 
-const isCI = !!process.env.CI;
-console.log({ cypressConfigIsCI: isCI });
+const { CI_PRODUCTION_E2E } = process.env;
+console.log({ CI_PRODUCTION_E2E });
 
-const baseUrl = isCI
+const baseUrl = CI_PRODUCTION_E2E
   ? "http://localhost:5000/meeting"
   : "http://localhost:5173";
-const setupNodeEvents = isCI
+
+const setupNodeEvents = CI_PRODUCTION_E2E
   ? undefined
   : (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
       cypressCoverageTask(on, config);
