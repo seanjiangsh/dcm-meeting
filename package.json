@@ -18,7 +18,7 @@
     "ci:e2e": "start-test server 5000/meeting 'cross-env CI_PRODUCTION_E2E=true cypress run --e2e --project client'"
   },
   "devDependencies": {
-    "concurrently": "^7.6.0",
+    "concurrently": "8.2.2",
     "cross-env": "^7.0.3",
     "cypress": "^13.6.4",
     "start-server-and-test": "^2.0.3",

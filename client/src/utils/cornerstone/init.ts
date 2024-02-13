@@ -10,6 +10,7 @@ import {
   RENDERER_ID,
   VIEWPORT_ID,
 } from "@utils/global.vars";
+import { IImage } from "@/types/cornerstone";
 
 const initCSLoader = () => {
   const { preferSizeOverAccuracy, useNorm16Texture } =
@@ -63,6 +64,18 @@ export const initCSDiv = async (csDiv: HTMLDivElement) => {
   await viewport.setStack(catWadoIds);
   viewport.render();
 
-  const imageData = viewport.getImageData();
-  console.log(imageData);
+  csDiv.addEventListener(csEnums.Events.IMAGE_RENDERED, onRenderedTest);
+};
+
+const onRenderedTest = (ev: Event) => {
+  const { detail } = ev as csTypes.EventTypes.ImageRenderedEvent;
+  const { renderingEngineId, viewportId } = detail;
+  const renderer = csCore.getRenderingEngine(renderingEngineId);
+  if (!renderer) return;
+  const viewport = renderer.getViewport(viewportId) as csTypes.IStackViewport;
+  if (!viewport || !viewport.getCornerstoneImage) return;
+  const image = viewport.getCornerstoneImage() as IImage;
+  const dataset = image.data;
+  const transferSyntax = dataset.string("x00020010");
+  console.log(detail, viewport, transferSyntax);
 };

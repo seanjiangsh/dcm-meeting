@@ -23,6 +23,4 @@ jobs:
       - name: Run client and server tests
         run: npm run test
       - name: Run client e2e tests in production environment
-        env:
-          CI_PRODUCTION_E2E: true
         run: npm run ci:e2e
