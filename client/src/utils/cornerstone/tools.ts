@@ -7,7 +7,7 @@ const { addTool, state, ToolGroupManager, StackScrollMouseWheelTool } = csTools;
 
 const addToCSTool = (
   tool: { toolName: string },
-  group: csTools.Types.IToolGroup
+  group: csTools.Types.IToolGroup,
 ) => {
   // * add tool to csTools
   const { toolName } = tool;
@@ -44,7 +44,7 @@ type MouseBindings = typeof csTools.Enums.MouseBindings;
 const passiveOtherTools = (
   group: csTools.Types.IToolGroup,
   mouseBinding: MouseBindings[keyof MouseBindings],
-  toolToActive: string
+  toolToActive: string,
 ) =>
   Object.entries(group.toolOptions).forEach(([name, opt]) => {
     const option = opt as ToolOptionsType;
@@ -55,7 +55,6 @@ const passiveOtherTools = (
   });
 
 export const activeTool = (toolName: string) => {
-  // TODO: might have other way to get tools from csTool?
   const tool = (csTools as any)[`${toolName}Tool`];
   if (!tool) {
     console.warn(`Can't find tool: ${toolName}`);

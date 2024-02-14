@@ -10,7 +10,7 @@ import {
   RENDERER_ID,
   VIEWPORT_ID,
 } from "@utils/global.vars";
-import { IImage } from "@/types/cornerstone";
+import { IImage } from "@src/types/cornerstone";
 
 const initCSLoader = () => {
   const { preferSizeOverAccuracy, useNorm16Texture } =

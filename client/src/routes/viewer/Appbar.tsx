@@ -4,7 +4,6 @@ import {
   AppBar,
   Box,
   Toolbar,
-  Typography,
   IconButton,
   List,
   ListItem,
@@ -16,17 +15,17 @@ import {
 } from "@mui/material";
 import { Apps, Logout, Person } from "@mui/icons-material";
 
-import { useAppDispatch, useAppSelector } from "@redux/root-hook";
+import { useAppSelector } from "@redux/root-hook";
 import { appBarHeight } from "@utils/global.vars";
+import Tools from "./Tools";
 
 const AppbarStyle = {
   zIndex: (theme: Theme) => theme.zIndex.drawer + 1,
   height: `${appBarHeight}px`,
+  backgroundColor: (theme: Theme) => theme.palette.grey["900"],
 };
 
 export default function Appbar() {
-  const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
   const user = useAppSelector((s) => s.user);
   const { name } = user;
@@ -41,12 +40,7 @@ export default function Appbar() {
   return (
     <AppBar position="fixed">
       <Toolbar sx={AppbarStyle}>
-        {/* <IconButton color="inherit" onClick={drawerBtnClick} edge="start">
-          <MenuIcon />
-        </IconButton> */}
-        <Typography variant="h6" noWrap sx={{ ml: 2 }}>
-          DICOM Meeting
-        </Typography>
+        <Tools />
         <Box sx={{ ml: "auto", display: "flex" }}>
           <IconButton
             id="Appbar-menu-button"

@@ -18,14 +18,20 @@ import storage from "redux-persist/lib/storage";
 import { createLogger } from "redux-logger";
 
 import { userReducer } from "./user/reducer";
+import { toolReducer } from "./tool/reducer";
 
 const logger = createLogger({ duration: true, collapsed: true });
 const middlewares: Array<any> = import.meta.env.DEV ? [logger] : [];
 
 const rootReducer = combineReducers({
   user: userReducer,
+  tool: toolReducer,
 });
-const persistedReducer = persistReducer({ key: "root", storage }, rootReducer);
+const persistWhitelist = ["user"];
+const persistedReducer = persistReducer(
+  { key: "root", storage, whitelist: persistWhitelist },
+  rootReducer,
+);
 const defaultMiddlewareConfig = {
   serializableCheck: {
     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

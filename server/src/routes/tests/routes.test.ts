@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import app from "@/app";
+import app from "@src/app";
 import { ServerConfig } from "@utils/initial";
 
 test(`server config WITHOUT "routePrefix"`, async () => {

@@ -21,7 +21,7 @@
     // paths
     "baseUrl": "src",
     "paths": {
-      "@/*": ["*"],
+      "@src/*": ["*"],
       "@appTypes/*": ["types/*"],
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],

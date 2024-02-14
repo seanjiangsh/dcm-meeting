@@ -10,7 +10,7 @@
     "lib": ["ESNext", "DOM"],
     "baseUrl": "src",
     "paths": {
-      "@/*": ["*"],
+      "@src/*": ["*"],
       "@appTypes/*": ["types/*"],
       "@utils/*": ["utils/*"],
       "@routes/*": ["routes/*"]

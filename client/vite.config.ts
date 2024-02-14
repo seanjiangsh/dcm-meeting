@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 import istanbul from "vite-plugin-istanbul";
 
 const aliasPaths = {
-  "@/*": path.resolve("src"),
+  "@src": path.resolve("src"),
   "@appTypes": path.resolve("src/types"),
   "@assets": path.resolve("src/assets"),
   "@components": path.resolve("src/components"),
