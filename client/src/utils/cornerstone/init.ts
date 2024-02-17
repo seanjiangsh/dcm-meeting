@@ -77,5 +77,5 @@ const onRenderedTest = (ev: Event) => {
   const image = viewport.getCornerstoneImage() as IImage;
   const dataset = image.data;
   const transferSyntax = dataset.string("x00020010");
-  console.log(detail, viewport, transferSyntax);
+  // console.log(detail, viewport, transferSyntax);
 };

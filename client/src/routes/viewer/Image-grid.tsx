@@ -24,7 +24,7 @@ export default function ImageGrid() {
     csInit
       .initCornerstone()
       .then(() => setInitialized(true))
-      .catch((err) => console.warn(err)); // TODO: show error
+      .catch((err) => console.warn(err));
   }, []);
 
   useEffect(() => {

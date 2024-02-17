@@ -58,6 +58,7 @@ export const activeTool = (toolName: string) => {
   const tool = (csTools as any)[`${toolName}Tool`];
   if (!tool) {
     console.warn(`Can't find tool: ${toolName}`);
+    console.log(csTools);
     return;
   }
 

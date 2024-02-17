@@ -11,7 +11,13 @@ export type ToolDetail = {
 };
 
 export const toolMap: ToolMap = {
-  WindowLevel: { text: "W/L", Icon: muiIcons.Exposure },
+  WindowLevel: { text: "Window Level", Icon: muiIcons.Exposure },
   Pan: { text: "Pan", Icon: muiIcons.PanTool },
   Zoom: { text: "Zoom", Icon: muiIcons.ZoomOutMap },
+  PlanarRotate: { text: "PlanarRotate", Icon: muiIcons.CropRotate },
+  Magnify: { text: "Magnify", Icon: muiIcons.ZoomIn },
+  Length: { text: "Length", Icon: muiIcons.Straighten },
+  EllipticalROI: { text: "Elliptical ROI", Icon: muiIcons.CircleOutlined },
+  Angle: { text: "Angle", Icon: muiIcons.Architecture },
+  ArrowAnnotate: { text: "ArrowAnnotate", Icon: muiIcons.NorthWest },
 };
