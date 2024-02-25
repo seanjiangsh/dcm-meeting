@@ -7,7 +7,7 @@ const toolSlice = createSlice({
   initialState,
   reducers: {
     resetState: () => initialState,
-    setActiveTool: (state, action: PayloadAction<string>) => {
+    setActiveTool(state, action: PayloadAction<string>) {
       state.activeTool = action.payload;
     },
   },

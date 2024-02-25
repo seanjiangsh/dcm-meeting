@@ -1,11 +1,11 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 
 import { useAppSelector } from "@redux/root-hook";
 
-import Appbar from "./Appbar";
+import Appbar from "./Appbar/Appbar";
 import ImageGrid from "./Image-grid";
-import { useEffect } from "react";
 
 const ContainerStyle = {
   width: "100%",

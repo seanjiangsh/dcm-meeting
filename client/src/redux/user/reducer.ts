@@ -7,7 +7,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     resetState: () => initialState,
-    setUserName: (state, action: PayloadAction<string>) => {
+    setUserName(state, action: PayloadAction<string>) {
       state.name = action.payload;
     },
   },
