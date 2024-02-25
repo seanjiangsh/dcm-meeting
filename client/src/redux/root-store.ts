@@ -38,7 +38,7 @@ const defaultMiddlewareConfig = {
   },
 };
 
-export const setupStore = (preloadedState?: RootState) => {
+const setupStore = (preloadedState?: RootState) => {
   return configureStore({
     reducer: persistedReducer,
     middleware: (gDM) => gDM(defaultMiddlewareConfig).concat(middlewares),

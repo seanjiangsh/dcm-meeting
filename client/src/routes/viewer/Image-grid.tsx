@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import { Paper } from "@mui/material";
 
 import { appBarHeight } from "@utils/global.vars";
@@ -13,7 +13,7 @@ const ImageGridStyle = {
   display: "flex",
   overflow: "hidden",
 };
-const CsDivStyle = { width: "100%", height: "100%" };
+const CsDivStyle: CSSProperties = { width: "100%", height: "100%" };
 
 export default function ImageGrid() {
   const [initialized, setInitialized] = useState(false);

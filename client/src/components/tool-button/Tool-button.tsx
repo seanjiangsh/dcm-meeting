@@ -7,8 +7,7 @@ import { activeTool } from "@utils/cornerstone/tools";
 import { toolMap, ToolDetail } from "./tool-map";
 
 const IconButtonStyle = (active?: boolean) => ({
-  pt: 1.5,
-  margin: "auto",
+  pt: 1,
   borderRadius: "5px",
   display: "flex",
   flexDirection: "column",

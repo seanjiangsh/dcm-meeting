@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import NotFound from "@routes/not-found/NotFound";
+import NotFound from "@routes/not-found/Not-found";
 import Prelude from "@routes/prelude/Prelude";
 import Viewer from "@routes/viewer/Viewer";
 
