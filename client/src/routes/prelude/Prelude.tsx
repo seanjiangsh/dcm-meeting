@@ -4,8 +4,9 @@ import { Paper, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Login } from "@mui/icons-material";
 
-import { useAppDispatch, useAppSelector } from "@redux/root-hook";
+import { useDispatch, useSelector } from "@redux/root-hook";
 import { userActions } from "@redux/user/reducer";
+import { userNameSelector } from "@redux/user/selectors";
 
 const PaperStyle = {
   margin: "auto",
@@ -17,11 +18,10 @@ const PaperStyle = {
 const ItemStyle = { m: 2, width: "20rem", textAlign: "center" };
 
 export default function Prelude() {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useAppSelector((s) => s.user);
-  const { name } = user;
+  const name = useSelector(userNameSelector);
 
   const [loading, setLoading] = useState(false);
 

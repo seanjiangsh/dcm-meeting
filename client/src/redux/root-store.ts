@@ -1,5 +1,6 @@
 import {
   Action,
+  Middleware,
   ThunkAction,
   combineReducers,
   configureStore,
@@ -21,7 +22,7 @@ import { userReducer } from "./user/reducer";
 import { toolReducer } from "./tool/reducer";
 
 const logger = createLogger({ duration: true, collapsed: true });
-const middlewares: Array<any> = import.meta.env.DEV ? [logger] : [];
+const middlewares: Array<Middleware> = import.meta.env.DEV ? [logger] : [];
 
 const rootReducer = combineReducers({
   user: userReducer,

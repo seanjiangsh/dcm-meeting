@@ -12,12 +12,12 @@ import {
 } from "@mui/material";
 import { Apps, Logout, Person } from "@mui/icons-material";
 
-import { useAppSelector } from "@redux/root-hook";
+import { useSelector } from "@redux/root-hook";
+import { userNameSelector } from "@redux/user/selectors";
 
 export default function MenuPopover() {
   const navigate = useNavigate();
-  const user = useAppSelector((s) => s.user);
-  const { name } = user;
+  const name = useSelector(userNameSelector);
 
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
 

@@ -1,9 +1,10 @@
 import { IconButton, Theme, Typography } from "@mui/material";
 
-import { useAppDispatch, useAppSelector } from "@redux/root-hook";
+import { useDispatch, useSelector } from "@redux/root-hook";
 import { toolActions } from "@redux/tool/reducer";
+import { activeToolSelector } from "@src/redux/tool/selectors";
 
-import { activeTool } from "@utils/cornerstone/tools";
+import * as csToolUtils from "@utils/cornerstone/tools";
 import { toolMap, ToolDetail } from "./tool-map";
 
 const IconButtonStyle = (active?: boolean) => ({
@@ -20,13 +21,13 @@ type ToolButtonProps = { toolName: string };
 export default function ToolButton(props: ToolButtonProps) {
   const { toolName } = props;
 
-  const dispatch = useAppDispatch();
-  const tool = useAppSelector((s) => s.tool);
-  const active = tool.activeTool === toolName;
+  const dispatch = useDispatch();
+  const activeTool = useSelector(activeToolSelector);
+  const active = activeTool === toolName;
   const toolDetail = toolMap[toolName] as ToolDetail | undefined;
 
   const handleClick = () => {
-    activeTool(toolName);
+    csToolUtils.activeTool(toolName);
     dispatch(toolActions.setActiveTool(toolName));
   };
 

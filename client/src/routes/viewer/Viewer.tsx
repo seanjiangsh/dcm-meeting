@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import { useAppSelector } from "@redux/root-hook";
+import { useSelector } from "@redux/root-hook";
+import { userNameSelector } from "@redux/user/selectors";
 
 import Appbar from "./Appbar/Appbar";
 import ImageGrid from "./Image-grid";
@@ -17,8 +18,7 @@ const ContainerStyle = {
 export default function Viewer() {
   const navigate = useNavigate();
 
-  const user = useAppSelector((s) => s.user);
-  const { name } = user;
+  const name = useSelector(userNameSelector);
 
   useEffect(() => {
     if (!name) navigate("/prelude");
