@@ -69,7 +69,10 @@ export const initCSDiv = async (csDiv: HTMLDivElement) => {
 
 const onRenderedTest = (ev: Event) => {
   const { detail } = ev as csTypes.EventTypes.ImageRenderedEvent;
-  const { renderingEngineId, viewportId } = detail;
+  const { element, renderingEngineId, viewportId } = detail;
+  console.log(element.getAttribute("rendered"));
+  element.setAttribute("rendered", "true");
+  console.log(element.getAttribute("rendered"));
   const renderer = csCore.getRenderingEngine(renderingEngineId);
   if (!renderer) return;
   const viewport = renderer.getViewport(viewportId) as csTypes.IStackViewport;
