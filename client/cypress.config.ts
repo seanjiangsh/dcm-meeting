@@ -15,6 +15,20 @@ const setupNodeEvents = (
 ) => {
   cypressCoverageTask(on, config);
   configureVisualRegression(on);
+  on("before:browser:launch", (browser, launchOptions) => {
+    const { name } = browser;
+    if (name === "chrome") {
+      launchOptions.args.push("--window-size=1000,660");
+      launchOptions.args.push("--force-device-scale-factor=1");
+    } else if (name === "electron") {
+      launchOptions.preferences.width = 1000;
+      launchOptions.preferences.height = 660;
+    } else if (name === "firefox") {
+      launchOptions.args.push("--width=1000");
+      launchOptions.args.push("--height=660");
+    }
+    return launchOptions;
+  });
   return config;
 };
 

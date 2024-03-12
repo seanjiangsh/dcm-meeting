@@ -47,6 +47,7 @@ const initCSLoader = () => {
 export const initCornerstone = async () => {
   initCSLoader();
   csTools.init();
+  csCore.setUseCPURendering(true);
   const result = await csCore.init();
   if (!result) throw new Error("Initialize cornerstone core failed");
 };
