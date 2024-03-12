@@ -8,7 +8,6 @@
     "cy": "start-test dev 5173 'cypress open'",
     "cy:unit": "cypress run --component",
     "cy:e2e": "start-test dev 5173 'cypress run --e2e'",
-    "cy:clean-snapshots": "rm cypress/snapshots/actual/*",
     "test": "npm run cy:unit && npm run cy:e2e",
     "build": "vite build --base=./",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

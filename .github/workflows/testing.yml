@@ -24,3 +24,8 @@ jobs:
         run: npm run test
       - name: Run client e2e tests in production environment
         run: npm run ci:e2e
+      - name: Archive Cypress Snapshots
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-snapshots
+          path: client/cypress/snapshots

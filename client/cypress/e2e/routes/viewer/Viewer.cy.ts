@@ -1,7 +1,4 @@
 describe("Viewer e2e tests", () => {
-  beforeEach(() => {
-    cy.viewport(1000, 660);
-  });
   it("should redirect to 'Prelude' page when user persist unset", () => {
     cy.clearLocalStorage("persist:root")
       .visit("/viewer")
