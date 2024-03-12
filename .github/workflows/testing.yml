@@ -1,4 +1,4 @@
-name: DCM Meeting CI
+name: Testing
 on:
   push:
     branches: ["**"]
@@ -26,6 +26,7 @@ jobs:
         run: npm run ci:e2e
       - name: Archive Cypress Snapshots
         uses: actions/upload-artifact@v2
+        if: failure()
         with:
           name: cypress-snapshots
           path: client/cypress/snapshots
