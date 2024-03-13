@@ -1,14 +1,16 @@
+const prefix = window.location.pathname.split("/meeting")[0].replace(/\/$/, "");
+
 export const appPaths = {
+  prefix,
   basePath: "",
-  apiPath: "/api/v1.0",
+  apiPath: "/api/v2.0",
 };
 
 console.log({ mode: import.meta.env.MODE, prod: import.meta.env.PROD });
 
 if (import.meta.env.PROD) {
-  const [basePath] = window.location.pathname.split("/meeting");
-  appPaths.basePath = `${basePath}/meeting`;
-  appPaths.apiPath = `${basePath}/api/v1.0`;
+  appPaths.basePath = `${prefix}/meeting`;
+  appPaths.apiPath = `${prefix}/api/v1.0`;
 
   // console.trace = () => {};
   // console.debug = () => {};

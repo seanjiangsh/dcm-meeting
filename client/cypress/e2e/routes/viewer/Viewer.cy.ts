@@ -5,4 +5,11 @@ describe("Viewer e2e tests", () => {
       .get("[id=page-Prelude]")
       .should("be.visible");
   });
+  it("should show viewer page and render 1st image properly", () => {
+    cy.setPersist()
+      .visit("/viewer")
+      .get("[data-viewport-uid=meeting-stack-viewport][rendered=true]")
+      .should("be.visible");
+    cy.compareSnapshot("viewer-initial-page");
+  });
 });

@@ -26,4 +26,6 @@ dist-ssr
 # testing
 coverage
 .nyc_output
-screenshots
+cypress/screenshots
+cypress/snapshots/actual
+cypress/snapshots/diff
