@@ -1,4 +1,4 @@
-const prefix = window.location.pathname.split("/admin")[0].replace(/\/$/, "");
+const prefix = window.location.pathname.split("/meeting")[0].replace(/\/$/, "");
 
 export const appPaths = {
   prefix,
