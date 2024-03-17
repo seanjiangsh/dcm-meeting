@@ -14,13 +14,16 @@
     "client": "npm run dev --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "deploy": "npm run build --prefix client && npm start --prefix server",
-    "test": "npm test --prefix client && npm test --prefix server",
-    "ci:e2e": "start-test server 5000/meeting 'cross-env CI_PRODUCTION_E2E=true cypress run --e2e --project client'"
+    "test": "npm test --prefix client && npm test --prefix server && npm run merge-coverage",
+    "ci:e2e": "start-test server 5000/meeting 'cross-env CI_PRODUCTION_E2E=true cypress run --e2e --project client'",
+    "merge-coverage": "istanbul-merge --out coverage/coverage.json server/coverage/coverage-final.json client/.nyc_output/out.json && nyc report --reporter=html --reporter=json-summary -t coverage --report-dir coverage/summary"
   },
   "devDependencies": {
     "concurrently": "8.2.2",
     "cross-env": "^7.0.3",
     "cypress": "^13.6.4",
+    "istanbul-merge": "^2.0.0",
+    "nyc": "^15.1.0",
     "start-server-and-test": "^2.0.3",
     "typescript": "^5.3.3"
   }
