@@ -42,5 +42,6 @@ export default defineConfig({
     setupNodeEvents,
     env: { visualRegressionType: "regression" },
     screenshotsFolder: "cypress/snapshots/actual",
+    pageLoadTimeout: 10000,
   },
 });
